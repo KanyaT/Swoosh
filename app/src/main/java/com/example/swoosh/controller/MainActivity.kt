@@ -1,8 +1,9 @@
-package com.example.swoosh
+package com.example.swoosh.controller
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import com.example.swoosh.R
 
 class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
