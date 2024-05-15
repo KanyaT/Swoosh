@@ -3,22 +3,20 @@ package com.example.swoosh.controller
 
 import android.os.Bundle
 import android.widget.TextView
+import com.example.swoosh.Model.Player
 import com.example.swoosh.R
-import com.example.swoosh.utilities.EXTRA_LEAGUE
-import com.example.swoosh.utilities.EXTRA_SKILL
+import com.example.swoosh.utilities.EXTRA_PLAYER
 
 class FinishActivity : BaseActivity() {
 
-    var league = ""
-    var skill = ""
+   lateinit var player: Player
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_finish)
 
-        league = intent.getStringExtra(EXTRA_LEAGUE).toString()
-        skill = intent.getStringExtra(EXTRA_SKILL).toString()
+        player = intent.getParcelableExtra(EXTRA_PLAYER)!!
 
         val finishText = findViewById<TextView>(R.id.finishText)
-        finishText.text = "Looking for a $league $skill like you....."
+        finishText.text = "Looking for a ${player.league} ${player.skill} like you....."
     }
 }

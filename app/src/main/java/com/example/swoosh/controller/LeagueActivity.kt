@@ -5,15 +5,16 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
 import android.widget.ToggleButton
-import com.example.swoosh.utilities.EXTRA_LEAGUE
+import com.example.swoosh.Model.Player
 import com.example.swoosh.R
+import com.example.swoosh.utilities.EXTRA_PLAYER
 
 class LeagueActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_league)
 
-        var selected = ""
+        val player = Player("","")
 
         val nextBtn = findViewById<Button>(R.id.leagueNextBtn)
         val menLeagueBtn = findViewById<ToggleButton>(R.id.menLeagueBtn)
@@ -21,9 +22,9 @@ class LeagueActivity : BaseActivity() {
         val coedLeagueBtn = findViewById<ToggleButton>(R.id.coedLeagueBtn)
 
         nextBtn.setOnClickListener {
-            if(!selected.equals("")) {
+            if(!player.league.equals("")) {
                 val intent = Intent(this, SkillActivity::class.java)
-                intent.putExtra(EXTRA_LEAGUE, selected)
+                intent.putExtra(EXTRA_PLAYER, player)
                 startActivity(intent)
             }else{
                 Toast.makeText(this,"Please select a league...", Toast.LENGTH_SHORT).show()
@@ -33,19 +34,19 @@ class LeagueActivity : BaseActivity() {
         menLeagueBtn.setOnClickListener {
             womenLeagueBtn.isChecked = false
             coedLeagueBtn.isChecked = false
-            selected = "men"
+            player.league = "men"
         }
 
         womenLeagueBtn.setOnClickListener {
             menLeagueBtn.isChecked = false
             coedLeagueBtn.isChecked = false
-            selected = "women"
+            player.league = "women"
         }
 
         coedLeagueBtn.setOnClickListener {
             womenLeagueBtn.isChecked = false
             menLeagueBtn.isChecked = false
-            selected = "coed"
+            player.league = "coed"
         }
     }
 }
